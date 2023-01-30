@@ -44,3 +44,4 @@ puts copy_of_blog_post.is_a? MarkdownFile     # true
 puts copy_of_blog_post.read == blog_post.read # true
 
 puts blog_post
+puts copy_of_blog_post

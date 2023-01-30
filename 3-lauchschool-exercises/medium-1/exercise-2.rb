@@ -1,5 +1,4 @@
 class FixedArray
-
   def initialize(size)
     @array = Array.new(size, nil)
   end

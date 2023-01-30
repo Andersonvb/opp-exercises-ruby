@@ -2,6 +2,7 @@ class Minilang
   def initialize(input)
     @input = input
     @stack = []
+    @register = 0
   end
 
   def eval

@@ -18,8 +18,8 @@ class BankAccount
 
   def withdraw(amount)
     if amount > 0
-      if amount < self.balance
-        self.balance -= amount
+      if amount < @balance
+        @balance -= amount
         success = true
       else
         success = false

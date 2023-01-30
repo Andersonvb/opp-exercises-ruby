@@ -90,12 +90,18 @@ class PokerHand
   private
 
   def royal_flush?
-    return false if @deck.count { |card| card.suit != @deck[0].suit } >= 1
+    # Evaluamos que todas las cartas tengan el mismo suit
+    return false unless @deck.all? { |card| card.suit == @deck[0].suit }
+
+    # Evaluamos que los valores de las cartas sean consecutivos y que la primera carta tenga un valor de 10
     @deck.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 } && @deck.sort[0].rank_value == 10
   end
 
   def straight_flush?
-    return false if @deck.count { |card| card.suit != @deck[0].suit } >= 1
+    # Evaluamos que todas las cartas tengan el mismo suit
+    return false unless @deck.all? { |card| card.suit == @deck[0].suit }
+
+    # Evaluamos que los valores de las cartas sean consecutivos
     @deck.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 }
   end
 
@@ -111,17 +117,16 @@ class PokerHand
     @deck.map { |card| card.suit }.uniq.size == 1
   end
 
-  # @deck.map { |card| card.rank_value }.sort.each_cons(2).all? { |a, b| b == a + 1 } ???
   def straight?
     @deck.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 }
   end
 
   def three_of_a_kind?
-    @deck.map { |card| card.rank_value }.group_by { |rank| rank }.values.any? { |group| group.size == 3 }
+    @deck.map { |card| card.rank_value }.group_by { |rank| rank }.values.any? { |arr| arr.size == 3 }
   end
 
   def two_pair?
-    pairs = @deck.map { |card| card.rank_value }.group_by { |rank| rank }.values.group_by { |group| group.size == 2}
+    pairs = @deck.map { |card| card.rank_value }.group_by { |rank| rank }.values.group_by { |arr| arr.size == 2}
 
     pairs[true].nil? ? false : pairs[true].size == 2
   end

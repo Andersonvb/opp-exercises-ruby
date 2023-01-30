@@ -23,9 +23,11 @@ class GuessingGame
       end
 
       @lives -= 1
+      if @lives == 0
+        print "You have no more guesses. You lost!\n\n"
+      end
     end
 
-    print "You have no more guesses. You lost!\n\n"
   end
 end
 

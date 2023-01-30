@@ -29,7 +29,9 @@ module DoesItRock
       negative = SearchEngine.count(%{"#{term} is not fun"}, API_KEY).to_f
 
       positive / (positive + negative)
-    rescue  
+    rescue AuthenticationError => e
+      raise e
+    rescue Exception => e
       NoScore
     end
   end

@@ -5,9 +5,8 @@ class CircularQueue
   end
 
   def enqueue(element)
-    if @queue.size == @max_size
-      dequeue
-    end
+    dequeue if @queue.size == @max_size
+      
     @queue << element
   end
 
