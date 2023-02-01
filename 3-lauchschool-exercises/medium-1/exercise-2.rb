@@ -1,6 +1,36 @@
-fixed_array = Array.new(5)
+class FixedArray
+
+  def initialize(size)
+    @array = Array.new(size, nil)
+  end
+
+  def to_a
+    @array
+  end
+
+  def to_s
+    @array.to_s
+  end
+
+  def fetch(index)
+    @array.fetch(index)
+  end
+
+  def [](index)
+    raise IndexError if index < (@array.size * -1) || index >= @array.size
+    @array[index]
+  end
+
+  def []=(index, value)
+    raise IndexError if index < (@array.size * -1) || index >= @array.size
+    @array[index] = value
+  end
+end
+
+fixed_array = FixedArray.new(5)
 puts fixed_array[3] == nil
 puts fixed_array.to_a == [nil] * 5
+
 
 fixed_array[3] = 'a'
 puts fixed_array[3] == 'a'

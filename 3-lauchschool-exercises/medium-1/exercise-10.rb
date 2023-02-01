@@ -25,11 +25,11 @@ class Card
   end
 
   def <=>(card)
-    RANKS[self.rank.to_s] <=> RANKS[card.rank.to_s]
+    RANKS[@rank.to_s] <=> RANKS[card.rank.to_s]
   end
 
   def rank_value
-    RANKS[self.rank.to_s]
+    RANKS[@rank.to_s]
   end
 end
 
@@ -111,7 +111,7 @@ class PokerHand
     @deck.map { |card| card.suit }.uniq.size == 1
   end
 
-    #@deck.map { |card| card.rank_value }.sort.each_cons(2).all? { |a, b| b == a + 1 } ???
+  # @deck.map { |card| card.rank_value }.sort.each_cons(2).all? { |a, b| b == a + 1 } ???
   def straight?
     @deck.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 }
   end
