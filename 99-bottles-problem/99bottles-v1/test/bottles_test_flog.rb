@@ -1,0 +1,2 @@
+class FlogTest
+end
