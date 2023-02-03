@@ -17,12 +17,12 @@ class FixedArray
   end
 
   def [](index)
-    raise IndexError if index < (@array.size * -1) || index >= @array.size
+    raise IndexError if index < (@array.size * -1) || index >= @array.size 
     @array[index]
   end
 
   def []=(index, value)
-    raise IndexError if index < (@array.size * -1) || index >= @array.size
+    raise IndexError if index < (@array.size * -1) || index >= @array.size 
     @array[index] = value
   end
 end

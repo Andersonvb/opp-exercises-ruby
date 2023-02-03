@@ -16,22 +16,12 @@ class Vehicle
 end
 
 class Car < Vehicle
-
-  def initialize(make, model)
-    super(make, model)
-  end
-
   def wheels
     4
   end
 end
 
 class Motorcycle < Vehicle
-
-  def initialize(make, model)
-    super(make, model)
-  end
-
   def wheels
     2
   end

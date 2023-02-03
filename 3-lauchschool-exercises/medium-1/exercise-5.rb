@@ -2,7 +2,6 @@ class Minilang
   def initialize(input)
     @input = input
     @stack = []
-    @register = input.start_with?(/[0-9]+/) ? input[0].to_i : 0
   end
 
   def eval
@@ -11,33 +10,18 @@ class Minilang
     words.each do |word|
 
       case word
-        when /[0-9]/
-          @register = word.to_i
-        when "PUSH"
-          @stack << @register.to_i
-        when "ADD"
-          @register += @stack.pop
-        when "SUB"
-          @register -= @stack.pop
-        when "MULT"
-          @register *= @stack.pop
-        when "DIV"
-          @register /= @stack.pop 
-        when "MOD"
-          @register %= @stack.pop 
-        when "POP"
-          if @stack.empty?
-            puts "Empty stack!"
-            return
-          else
-            @register = @stack.pop 
-          end
-        when "PRINT"
-          puts @register
-        else
-          puts "Invalid token #{word}"
-          return
+      when /[0-9]/ then @register = word.to_i
+      when 'PUSH' then @stack << @register.to_i
+      when 'ADD' then @register += @stack.pop
+      when 'SUB' then @register -= @stack.pop
+      when 'MULT' then @register *= @stack.pop
+      when 'DIV' then @register /= @stack.pop 
+      when 'MOD' then @register %= @stack.pop 
+      when 'POP' then @stack.empty? ? @register = 'Empty stack!' : @register = @stack.pop
+      when 'PRINT' then puts @register
+      else puts "Invalid token #{word}"; break
       end
+
     end
   end
 

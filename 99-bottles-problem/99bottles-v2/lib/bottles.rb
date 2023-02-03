@@ -1,20 +1,20 @@
 class Bottles
 
-  NoMore = lambda do |verse|
+  NoMore = lambda do |_verse|
     "No more bottles of beer on the wall, " +
     "no more bottles of beer.\n" +
     "Go to the store and buy some more, " +
     "99 bottles of beer on the wall.\n"
   end
 
-  LastOne = lambda do |verse|
+  LastOne = lambda do |_verse|
     "1 bottle of beer on the wall, " +
     "1 bottle of beer.\n" +
     "Take it down and pass it around, " +
     "no more bottles of beer on the wall.\n"
   end
 
-  Penultimate = lambda do |verse|
+  Penultimate = lambda do |_verse|
     "2 bottles of beer on the wall, " +
     "2 bottles of beer.\n" +
     "Take one down and pass it around, " +
@@ -51,6 +51,7 @@ class Bottles
 
   class Verse
     attr_reader :number
+ 
     def initialize(number, &lyrics)
       @number = number
       @lyrics = lyrics

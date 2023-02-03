@@ -4,7 +4,7 @@ module Walkable
   end
 end
 
-class Animal
+class Mammal
   include Walkable
   attr_reader :name
 
@@ -13,7 +13,7 @@ class Animal
   end
 end
 
-class Person < Animal
+class Person < Mammal
   private
 
   def gait
@@ -21,7 +21,7 @@ class Person < Animal
   end
 end
 
-class Cat < Animal
+class Cat < Mammal
   private
 
   def gait
@@ -29,7 +29,7 @@ class Cat < Animal
   end
 end
 
-class Cheetah < Animal
+class Cheetah < Mammal
   private
 
   def gait

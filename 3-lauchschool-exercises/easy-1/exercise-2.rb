@@ -6,8 +6,7 @@ class Pet
   end
 
   def to_s
-    @name.upcase
-    "My name is #{@name}."
+    "My name is #{@name.upcase}."
   end
 end
 

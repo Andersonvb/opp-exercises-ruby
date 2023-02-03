@@ -49,6 +49,7 @@ phanson = Owner.new('P Hanson')
 bholmes = Owner.new('B Holmes')
 
 shelter = Shelter.new
+
 shelter.adopt(phanson, butterscotch)
 shelter.adopt(phanson, pudding)
 shelter.adopt(phanson, darwin)
