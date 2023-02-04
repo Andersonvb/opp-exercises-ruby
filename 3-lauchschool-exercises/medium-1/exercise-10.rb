@@ -11,7 +11,7 @@ class Card
     '6' => 6,
     '7' => 7,
     '8' => 8,
-    '9' =>  9,
+    '9' => 9,
     '10' => 10,
     'Jack' => 11,
     'Queen' => 12,
@@ -121,7 +121,9 @@ class PokerHand
   end
 
   def two_pair?
-    @deck.map { |card| card.rank_value }.group_by { |rank| rank }.values.group_by { |group| group.size == 2}[true].size == 2
+    pairs = @deck.map { |card| card.rank_value }.group_by { |rank| rank }.values.group_by { |group| group.size == 2}
+
+    pairs[true].nil? ? false : pairs[true].size == 2
   end
 
   def pair?
@@ -139,6 +141,7 @@ end
 class Array
   alias_method :draw, :pop
 end
+
 
 # Test that we can identify each PokerHand type.
 hand = PokerHand.new([
@@ -232,10 +235,10 @@ hand = PokerHand.new([
 puts hand.evaluate == 'Pair'
 
 hand = PokerHand.new([
-  Card.new(2,      'Hearts'),
+  Card.new(2, 'Hearts'),
   Card.new('King', 'Clubs'),
-  Card.new(5,      'Diamonds'),
-  Card.new(9,      'Spades'),
-  Card.new(3,      'Diamonds')
+  Card.new(5, 'Diamonds'),
+  Card.new(9, 'Spades'),
+  Card.new(3, 'Diamonds')
 ])
 puts hand.evaluate == 'High card'

@@ -1,2 +1,0 @@
-class FlogTest
-end
