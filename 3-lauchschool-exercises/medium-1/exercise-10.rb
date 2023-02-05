@@ -62,12 +62,12 @@ end
 # Include Card and Deck classes from the last two exercises.
 
 class PokerHand
-  def initialize(deck)
-    @deck = deck
+  def initialize(hand)
+    @hand = hand
   end
 
   def print
-    @deck.each do |card|
+    @hand.each do |card|
       puts "#{card.rank} - #{card.suit}"
     end
   end
@@ -91,48 +91,48 @@ class PokerHand
 
   def royal_flush?
     # Evaluamos que todas las cartas tengan el mismo suit
-    return false unless @deck.all? { |card| card.suit == @deck[0].suit }
+    return false unless @hand.all? { |card| card.suit == @hand[0].suit }
 
     # Evaluamos que los valores de las cartas sean consecutivos y que la primera carta tenga un valor de 10
-    @deck.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 } && @deck.sort[0].rank_value == 10
+    @hand.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 } && @hand.sort[0].rank_value == 10
   end
 
   def straight_flush?
     # Evaluamos que todas las cartas tengan el mismo suit
-    return false unless @deck.all? { |card| card.suit == @deck[0].suit }
+    return false unless @hand.all? { |card| card.suit == @hand[0].suit }
 
     # Evaluamos que los valores de las cartas sean consecutivos
-    @deck.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 }
+    @hand.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 }
   end
 
   def four_of_a_kind?
-    @deck.group_by { |card| card.rank_value }.values.any? { |group| group.size == 4 }
+    @hand.group_by { |card| card.rank_value }.values.any? { |group| group.size == 4 }
   end
 
   def full_house?
-    @deck.map { |card| card.rank_value }.uniq.size == 2
+    @hand.map { |card| card.rank_value }.uniq.size == 2
   end
 
   def flush?
-    @deck.map { |card| card.suit }.uniq.size == 1
+    @hand.map { |card| card.suit }.uniq.size == 1
   end
 
   def straight?
-    @deck.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 }
+    @hand.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 }
   end
 
   def three_of_a_kind?
-    @deck.map { |card| card.rank_value }.group_by { |rank| rank }.values.any? { |arr| arr.size == 3 }
+    @hand.map { |card| card.rank_value }.group_by { |rank| rank }.values.any? { |arr| arr.size == 3 }
   end
 
   def two_pair?
-    pairs = @deck.map { |card| card.rank_value }.group_by { |rank| rank }.values.group_by { |arr| arr.size == 2}
+    pairs = @hand.map { |card| card.rank_value }.group_by { |rank| rank }.values.group_by { |arr| arr.size == 2}
 
     pairs[true].nil? ? false : pairs[true].size == 2
   end
 
   def pair?
-    @deck.map { |card| card.rank_value }.group_by { |rank| rank }.values.any? { |group| group.size == 2}
+    @hand.map { |card| card.rank_value }.group_by { |rank| rank }.values.any? { |group| group.size == 2}
   end
 end
 
