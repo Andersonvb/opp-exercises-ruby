@@ -1,8 +1,8 @@
 class Person
-  attr_writer :name
+  attr_reader :name
 
-  def name
-    @name.capitalize
+  def name=name
+    @name = name.capitalize
   end
 end
 

@@ -7,15 +7,9 @@ class Vehicle
 end
 
 class Truck < Vehicle
-  def initialize(year)
-    super(year)
-  end
 end
 
 class Car < Vehicle
-  def initialize(year)
-    super(year)
-  end
 end
 
 

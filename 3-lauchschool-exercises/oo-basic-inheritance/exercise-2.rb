@@ -7,7 +7,6 @@ class Vehicle
 end
 
 class Truck < Vehicle
-
   def initialize(year)
     super(year)
     start_engine

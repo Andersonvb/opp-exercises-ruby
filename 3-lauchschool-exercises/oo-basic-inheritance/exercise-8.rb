@@ -9,4 +9,4 @@ end
 
 cat1 = Cat.new
 cat1.color
-# Cat, Animal
+# Cat, Animal, Object
