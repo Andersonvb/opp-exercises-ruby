@@ -3,8 +3,8 @@ class Bottles
     verses(99, 0)
   end
 
-  def verses(start, finish)
-    start.downto(finish).map { |number| verse(number) }.join("\n")
+  def verses(max, min)
+    (min..max).to_a.reverse.map { |number| verse(number) }.join("\n")
   end
 
   def verse(number)
