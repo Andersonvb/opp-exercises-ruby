@@ -3,7 +3,6 @@ class Card
   attr_reader :rank, :suit
 
   RANKS = {
-    '1' => 1,
     '2' => 2,
     '3' => 3,
     '4' => 4,
@@ -83,18 +82,22 @@ class PokerHand
     when three_of_a_kind? then 'Three of a kind'
     when two_pair?        then 'Two pair'
     when pair?            then 'Pair'
-    else                       'High card'
+    else 'High card'
     end
   end
 
   private
+
+  def is_consecutive?
+    @hand.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 }
+  end
 
   def royal_flush?
     # Evaluamos que todas las cartas tengan el mismo suit
     return false unless @hand.all? { |card| card.suit == @hand[0].suit }
 
     # Evaluamos que los valores de las cartas sean consecutivos y que la primera carta tenga un valor de 10
-    @hand.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 } && @hand.sort[0].rank_value == 10
+    is_consecutive? && @hand.sort[0].rank_value == 10
   end
 
   def straight_flush?
@@ -102,7 +105,7 @@ class PokerHand
     return false unless @hand.all? { |card| card.suit == @hand[0].suit }
 
     # Evaluamos que los valores de las cartas sean consecutivos
-    @hand.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 }
+    is_consecutive?
   end
 
   def four_of_a_kind?
@@ -118,7 +121,7 @@ class PokerHand
   end
 
   def straight?
-    @hand.sort.each_cons(2).all? { |a, b| b.rank_value == a.rank_value + 1 }
+    is_consecutive?
   end
 
   def three_of_a_kind?
